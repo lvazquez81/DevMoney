@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMoney.Tests", "DevMoney.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMoney", "DevMoney\DevMoney.csproj", "{2E86355B-E486-4E49-BF81-69153FF60929}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMoneyWeb", "DevMoneyWeb\DevMoneyWeb.csproj", "{DD44BC9F-55C7-4D48-9DEE-DB7C6353B01F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2E86355B-E486-4E49-BF81-69153FF60929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E86355B-E486-4E49-BF81-69153FF60929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E86355B-E486-4E49-BF81-69153FF60929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD44BC9F-55C7-4D48-9DEE-DB7C6353B01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD44BC9F-55C7-4D48-9DEE-DB7C6353B01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD44BC9F-55C7-4D48-9DEE-DB7C6353B01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD44BC9F-55C7-4D48-9DEE-DB7C6353B01F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
