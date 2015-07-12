@@ -10,18 +10,19 @@ namespace DevMoney.Tests
     [TestFixture]
     public class AsDeveloperTests
     {
+        
+        
         [Test]
         public void WhenRegisteringMyLunchExpense_BoardShowsHistoryUpdated()
         {
-            DevMoney x = new DevMoney("lvazquez81");
+            IRepository repo = new InMemoryRepository();
+            ExpenseManager x = new ExpenseManager(repo);
             bool result = x.AddExpense(50, "Breakfast");
             Assert.IsTrue(result);
 
-            ExpenseHistory h = x.GetHistory();
+            IList<ExpenseDetail> expenses = x.GetExpenseHistory();
 
-            Assert.IsNotNull(h);
-            Assert.IsTrue(h.Contains("Breakfast"));
-            Assert.AreEqual(50, h.GetExpense("Breakfast").Expense);
+            Assert.IsNotNull(expenses);
         }
     }
 }

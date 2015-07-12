@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IList<DevMoney.ExpenseDetail>
+@{
     ViewBag.Title = "Index";
 }
 
@@ -6,20 +7,27 @@
     <article>
         <h3>New expense</h3>
         <div>
-            Amount <input type="text" id="txtAmount"/>
-            Reason <input type="text" id="txtReason" />
-            <input type="button" value="save" />
+
         </div>
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                Amount <input type="text" id="txtAmount" />
+                Reason <input type="text" id="txtReason" />
+                @Html.ActionLink("Add", "Add", "Home")
+            </fieldset>
+        }
     </article>
 </section>
 <section>
     <article>
         <h3>Expense history</h3>
-        <ul>
-            <li>July 9th, 2015 - $50 - "Lunch money" <a href="#">Remove</a></li>
-            <li>July 9th, 2015 - $50 - "Lunch money" <a href="#">Remove</a></li>
-            <li>July 9th, 2015 - $50 - "Lunch money" <a href="#">Remove</a></li>
-            <li>July 9th, 2015 - $50 - "Lunch money" <a href="#">Remove</a></li>
+        <ul class="two-columns clearfix">
+            @foreach (var x in Model)
+            {
+                <li>@x.Id - @x.Amount - @x.Description - @Html.ActionLink("Remove", "Remove", "Home", new { expenseId = x.Id }, null)</li>
+
+            }
         </ul>
     </article>
 </section>

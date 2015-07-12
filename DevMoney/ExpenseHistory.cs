@@ -20,20 +20,20 @@ namespace DevMoney
         
         public bool Contains(string expenseTag)
         {
-            return (from x in _registry where x.Tag.Equals(expenseTag) select x).Count() > 0;
+            return (from x in _registry where x.Description.Equals(expenseTag) select x).Count() > 0;
         }
 
         public ExpenseDetail GetExpense(string expenseTag)
         {
-            return (from x in _registry where x.Tag.Equals(expenseTag) select x).FirstOrDefault();
+            return (from x in _registry where x.Description.Equals(expenseTag) select x).FirstOrDefault();
         }
 
         internal bool Add(int amount, string description)
         {
             _registry.Add(new ExpenseDetail
             {
-                Expense = amount,
-                Tag = description
+                Amount = amount,
+                Description= description
             });
             return true;
         }

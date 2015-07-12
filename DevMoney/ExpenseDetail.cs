@@ -8,7 +8,9 @@ namespace DevMoney
 {
     public class ExpenseDetail
     {
-        public string Tag { get; set; }
-        public decimal Expense { get; set; }
+        public int Id { get; set; }
+        public decimal Amount { get; set; }
+        public string Description { get; set; }
+        
     }
 }

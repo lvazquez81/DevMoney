@@ -6,23 +6,28 @@ using System.Threading.Tasks;
 
 namespace DevMoney
 {
-    public class DevMoney
+    public class ExpenseManager
     {
-        private ExpenseHistory _registry;
+        private IRepository _repository;
 
-        public DevMoney(string registryName)
+        public ExpenseManager(IRepository expenseRepository)
         {
-            _registry = new ExpenseHistory(registryName);
+            _repository = expenseRepository;
         }
 
         public bool AddExpense(int amount, string description)
         {
-            return _registry.Add(amount, description);
+            return _repository.Add(amount, description);
         }
 
-        public ExpenseHistory GetHistory()
+        public IList<ExpenseDetail> GetExpenseHistory()
         {
-            return _registry;
+            return _repository.GetAllExpenses();
+        }
+
+        public void Remove(int expenseId)
+        {
+            _repository.Remove(expenseId);
         }
     }
 }
