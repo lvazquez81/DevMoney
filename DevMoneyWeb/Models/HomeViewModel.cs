@@ -8,7 +8,8 @@ namespace DevMoneyWeb.Models
 {
     public class HomeViewModel
     {
-        public ExpenseDetail NewExpense { get; set; }
+        public decimal? Amount { get; set; }
+        public string Description { get; set; }
         public IList<ExpenseDetail> ExpenseHistory { get; set; }
     }
 }

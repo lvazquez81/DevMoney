@@ -1,4 +1,5 @@
 ﻿using DevMoney;
+using DevMoneyWeb.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,24 +21,33 @@ namespace DevMoneyWeb.Controllers
         public ActionResult Index()
         {
             ExpenseManager mgr = new ExpenseManager(_repository);
-            IList<ExpenseDetail> expenses = mgr.GetExpenseHistory();
-            return View("Index", expenses);
+            HomeViewModel view = new HomeViewModel();
+            view.ExpenseHistory = mgr.GetExpenseHistory();
+            return View("Index", view);
         }
 
         public ActionResult Remove(int expenseId)
         {
             ExpenseManager mgr = new ExpenseManager(_repository);
             mgr.Remove(expenseId);
-            IList<ExpenseDetail> expenses = mgr.GetExpenseHistory();
-            return View("Index", expenses); // Return to same index
+            
+            HomeViewModel view = new HomeViewModel();
+            view.ExpenseHistory = mgr.GetExpenseHistory();
+            return View("Index", view);            
         }
 
-        public ActionResult Add()
+        [HttpPost]
+        public ActionResult Add(HomeViewModel view)
         {
-            ExpenseManager mgr = new ExpenseManager(_repository);
-            mgr.AddExpense(5, "abc");
-            IList<ExpenseDetail> expenses = mgr.GetExpenseHistory();
-            return View("Index", expenses); // Return to same index
+            if (ModelState.IsValid)
+            {
+                ExpenseManager mgr = new ExpenseManager(_repository);
+                mgr.AddExpense(view.Amount.Value, view.Description);
+                ModelState.Clear();
+                view.ExpenseHistory = mgr.GetExpenseHistory();
+            }
+
+            return this.RedirectToAction("Index");
         }
     }
 }

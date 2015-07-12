@@ -15,7 +15,7 @@ namespace DevMoney
             _repository = expenseRepository;
         }
 
-        public bool AddExpense(int amount, string description)
+        public bool AddExpense(decimal amount, string description)
         {
             return _repository.Add(amount, description);
         }

@@ -1,29 +1,46 @@
-﻿@model IList<DevMoney.ExpenseDetail>
+﻿@model DevMoneyWeb.Models.HomeViewModel
 @{
     ViewBag.Title = "Index";
 }
 
 <section>
-    <article>
-        <h3>New expense</h3>
-        <div>
+    @using (Html.BeginForm("Add", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="form-horizontal">
+            <h4>New Expense</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
         </div>
-        @using (Html.BeginForm())
-        {
-            <fieldset>
-                Amount <input type="text" id="txtAmount" />
-                Reason <input type="text" id="txtReason" />
-                @Html.ActionLink("Add", "Add", "Home")
-            </fieldset>
-        }
-    </article>
+    }
 </section>
 <section>
     <article>
         <h3>Expense history</h3>
         <ul class="two-columns clearfix">
-            @foreach (var x in Model)
+            @foreach (var x in Model.ExpenseHistory)
             {
                 <li>@x.Id - @x.Amount - @x.Description - @Html.ActionLink("Remove", "Remove", "Home", new { expenseId = x.Id }, null)</li>
 
