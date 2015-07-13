@@ -39,11 +39,11 @@ namespace DevMoneyWeb.Controllers
         [HttpPost]
         public ActionResult Add(HomeViewModel view)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 ExpenseManager mgr = new ExpenseManager(_repository);
                 mgr.AddExpense(view.Amount.Value, view.Description);
-                ModelState.Clear();
+                this.ModelState.Clear();
                 view.ExpenseHistory = mgr.GetExpenseHistory();
             }
 
