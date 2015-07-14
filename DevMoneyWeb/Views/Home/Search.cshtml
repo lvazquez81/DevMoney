@@ -1,0 +1,54 @@
+﻿@model  DevMoneyWeb.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<section>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.SearchKey, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SearchKey, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SearchKey, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</section>
+<section>
+    <article>
+        <h3>Expense history</h3>
+
+        @if (Model.SearchResults.Count > 0)
+        {
+            <div class="two-columns clearfix">
+                <ul>
+                    @foreach (var x in Model.SearchResults)
+                    {
+                        <li>@x.Id - @x.Amount - @x.Description - @Html.ActionLink("Remove", "Remove", "Home", new { expenseId = x.Id }, null)</li>
+
+                    }
+                </ul>
+            </div>
+
+        }
+        else
+        {
+            <div class="two-columns clearfix">No results found for '@Model.SearchKey'</div>
+        }
+
+
+    </article>
+</section>

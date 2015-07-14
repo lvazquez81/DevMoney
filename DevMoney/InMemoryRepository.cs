@@ -9,12 +9,14 @@ namespace DevMoney
     public class InMemoryRepository : IRepository
     {
         private static List<ExpenseDetail> _data;
+        private static int _newId = 0;
 
         public InMemoryRepository()
         {
             if (_data == null)
             {
-                this.Data.Add(new ExpenseDetail() { Id = 1, Amount = (decimal)5.99, Description = "abc" });
+                _newId = 0;
+                this.Data.Add(new ExpenseDetail() { Id = ++_newId, Amount = (decimal)5.99, Description = "abc" });
             }
         }
 
@@ -31,7 +33,7 @@ namespace DevMoney
         {
             this.Data.Add(new ExpenseDetail()
             {
-                Id = 1,
+                Id = ++_newId,
                 Amount = amount,
                 Description = description
             });
@@ -56,6 +58,16 @@ namespace DevMoney
         public IList<ExpenseDetail> GetAllExpenses()
         {
             return this.Data;
+        }
+
+
+        public IList<ExpenseDetail> FindExpenses(string search)
+        {
+            var result = from x in this.Data
+                         where x.Description.Trim().ToLower().Contains(search.Trim().ToLower())
+                         select x;
+
+            return result.ToList();
         }
     }
 }

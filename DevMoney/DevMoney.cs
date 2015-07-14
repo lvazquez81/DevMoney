@@ -29,5 +29,10 @@ namespace DevMoney
         {
             _repository.Remove(expenseId);
         }
+
+        public IList<ExpenseDetail> Search(string search)
+        {
+            return _repository.FindExpenses(search);
+        }
     }
 }

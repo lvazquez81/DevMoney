@@ -11,5 +11,6 @@ namespace DevMoney
         bool Add(decimal amount, string description);
         bool Remove(int id);
         IList<ExpenseDetail> GetAllExpenses();
+        IList<ExpenseDetail> FindExpenses(string search);
     }
 }

@@ -23,17 +23,17 @@ namespace DevMoneyWeb.Controllers
             ExpenseManager mgr = new ExpenseManager(_repository);
             HomeViewModel view = new HomeViewModel();
             view.ExpenseHistory = mgr.GetExpenseHistory();
-            return View("Index", view);
+            return this.View("Index", view);
         }
 
         public ActionResult Remove(int expenseId)
         {
             ExpenseManager mgr = new ExpenseManager(_repository);
             mgr.Remove(expenseId);
-            
+
             HomeViewModel view = new HomeViewModel();
             view.ExpenseHistory = mgr.GetExpenseHistory();
-            return View("Index", view);            
+            return this.View("Index", view);
         }
 
         [HttpPost]
@@ -48,6 +48,15 @@ namespace DevMoneyWeb.Controllers
             }
 
             return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Search(HomeViewModel view)
+        {
+            ExpenseManager mgr = new ExpenseManager(_repository);
+            this.ModelState.Clear();
+            view.ExpenseHistory = mgr.Search(view.Search);
+            return this.View("Index", view);
         }
     }
 }
