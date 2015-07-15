@@ -8,9 +8,9 @@ namespace DevMoney
 {
     public class ExpenseManager
     {
-        private IRepository _repository;
+        private IExpenseRepository _repository;
 
-        public ExpenseManager(IRepository expenseRepository)
+        public ExpenseManager(IExpenseRepository expenseRepository)
         {
             _repository = expenseRepository;
         }

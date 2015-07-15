@@ -30,7 +30,7 @@ namespace DevMoneyWeb.Models
         public string SearchKey { get; set; }
 
         public IList<ExpenseDetail> SearchResults { get; set; }
-
-        
     }
+
+   
 }

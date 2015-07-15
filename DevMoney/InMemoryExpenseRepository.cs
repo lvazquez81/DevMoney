@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DevMoney
 {
-    public class InMemoryRepository : IRepository
+    public class InMemoryExpenseRepository : IExpenseRepository
     {
         private static List<ExpenseDetail> _data;
         private static int _newId = 0;
 
-        public InMemoryRepository()
+        public InMemoryExpenseRepository()
         {
             if (_data == null)
             {

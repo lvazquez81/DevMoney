@@ -11,10 +11,10 @@ namespace DevMoneyWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IExpenseRepository _repository;
         public HomeController()
         {
-            _repository = new InMemoryRepository();
+            _repository = new InMemoryExpenseRepository();
         }
 
         // GET: Home

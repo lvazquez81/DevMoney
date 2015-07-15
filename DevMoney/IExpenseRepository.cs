@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevMoney
 {
-    public interface IRepository
+    public interface IExpenseRepository
     {
         bool Add(decimal amount, string description);
         bool Remove(int id);

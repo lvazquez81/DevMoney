@@ -15,7 +15,7 @@ namespace DevMoney.Tests
         [Test]
         public void WhenRegisteringMyLunchExpense_BoardShowsHistoryUpdated()
         {
-            IRepository repo = new InMemoryRepository();
+            IExpenseRepository repo = new InMemoryExpenseRepository();
             ExpenseManager x = new ExpenseManager(repo);
             bool result = x.AddExpense(50, "Breakfast");
             Assert.IsTrue(result);

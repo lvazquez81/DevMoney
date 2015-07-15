@@ -39,12 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DevMoney.cs" />
+    <Compile Include="ExpenseManager.cs" />
     <Compile Include="ExpenseDetail.cs" />
     <Compile Include="ExpenseHistory.cs" />
-    <Compile Include="InMemoryRepository.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="InMemoryExpenseRepository.cs" />
+    <Compile Include="InMemoryUtilityRepository.cs" />
+    <Compile Include="IExpenseRepository.cs" />
+    <Compile Include="IUtilityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityInvoice.cs" />
+    <Compile Include="UtilityManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

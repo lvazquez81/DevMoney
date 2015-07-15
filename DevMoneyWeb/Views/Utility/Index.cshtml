@@ -1,0 +1,37 @@
+﻿@model DevMoneyWeb.Models.ListUtilityViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<section>
+    <article>
+        <h3>Utilities</h3>
+
+        @if (Model.Invoices.Count > 0)
+        {
+            <div class="two-columns clearfix">
+                @foreach (var x in Model.Invoices)
+                {
+                    <div>
+                        Invoice# @x.Id
+                        <br />
+                        @x.UtilityName - @x.InvoiceDate.ToShortDateString()
+                        <br />
+                        @x.Amount.ToString("C") - @x.DueDate.ToShortDateString()
+                        <br />
+                        @Html.ActionLink("Remove", "Remove", "Utility", new { utilityId = x.Id }, null)
+                    </div>
+                }
+            </div>
+            <div>Found: @Model.Invoices.Count invoices.</div>
+
+        }
+        else
+        {
+            <div class="two-columns clearfix">No expenses have been registered.</div>
+        }
+
+
+    </article>
+</section>
+
