@@ -20,9 +20,9 @@ namespace DevMoney
 
         public enum UtilityType
         {
-            Power,
-            Water,
-            Phone
+            Power = 1,
+            Water = 2,
+            Phone = 3
         }    
     }
 

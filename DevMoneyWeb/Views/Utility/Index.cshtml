@@ -4,6 +4,12 @@
 }
 
 <section>
+    <div>
+        @Html.ActionLink("Add new utility invoice", "Add", "Utility")
+    </div>
+</section>
+
+<section>
     <article>
         <h3>Utilities</h3>
 
@@ -12,14 +18,19 @@
             <div class="two-columns clearfix">
                 @foreach (var x in Model.Invoices)
                 {
-                    <div>
-                        Invoice# @x.Id
-                        <br />
-                        @x.UtilityName - @x.InvoiceDate.ToShortDateString()
-                        <br />
-                        @x.Amount.ToString("C") - @x.DueDate.ToShortDateString()
-                        <br />
-                        @Html.ActionLink("Remove", "Remove", "Utility", new { utilityId = x.Id }, null)
+                    <div class="container-fluid" style="background-color:grey;padding:1em;color:white;font-size:1em;">
+                        <div class="col-md-3">
+                            Invoice# @x.Id
+                        </div>
+                        <div class="col-md-3">
+                            @x.UtilityName - @x.InvoiceDate.ToShortDateString()
+                        </div>
+                        <div class="col-md-3">
+                            @x.Amount.ToString("C") - @x.DueDate.ToShortDateString()
+                        </div>
+                        <div class="col-md-push-3">
+                            @Html.ActionLink("Remove", "Remove", "Utility", new { utilityId = x.Id }, null)
+                        </div>
                     </div>
                 }
             </div>

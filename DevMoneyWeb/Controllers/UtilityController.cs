@@ -24,5 +24,13 @@ namespace DevMoneyWeb.Controllers
             view.Invoices = mgr.GetUtilityInvoices();
             return this.View("Index", view);
         }
+
+        // GET: Home
+        public ActionResult Add()
+        {
+            UtilityManager mgr = new UtilityManager(_repository);
+            CaptureUtilityViewModel view = new CaptureUtilityViewModel();
+            return this.View(view);
+        }
     }
 }
