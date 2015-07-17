@@ -29,7 +29,7 @@
                             @x.Amount.ToString("C") - @x.DueDate.ToShortDateString()
                         </div>
                         <div class="col-md-push-3">
-                            @Html.ActionLink("Remove", "Remove", "Utility", new { utilityId = x.Id }, null)
+                            @Html.ActionLink("Remove", "Remove", "Utility", new { invoiceId = x.Id }, null)
                         </div>
                     </div>
                 }
@@ -39,7 +39,7 @@
         }
         else
         {
-            <div class="two-columns clearfix">No expenses have been registered.</div>
+            <div class="two-columns clearfix">No utility invoices have been registered.</div>
         }
 
 

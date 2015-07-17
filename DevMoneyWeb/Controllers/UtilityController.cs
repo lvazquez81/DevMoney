@@ -25,12 +25,36 @@ namespace DevMoneyWeb.Controllers
             return this.View("Index", view);
         }
 
-        // GET: Home
+        [HttpGet]
         public ActionResult Add()
         {
             UtilityManager mgr = new UtilityManager(_repository);
             CaptureUtilityViewModel view = new CaptureUtilityViewModel();
+            view.InvoiceDate = DateTime.Today;
+            view.DueDate = DateTime.Today;
             return this.View(view);
+        }
+
+        [HttpPost]
+        public ActionResult Add(CaptureUtilityViewModel view)
+        {
+            if (this.ModelState.IsValid)
+            {
+                UtilityManager mgr = new UtilityManager(_repository);
+                mgr.AddUtility(view.Amount, view.InvoiceDate, view.Type);
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Remove(int invoiceId)
+        {
+            UtilityManager mgr = new UtilityManager(_repository);
+            mgr.Remove(invoiceId);
+
+            ListUtilityViewModel view = new ListUtilityViewModel();
+            view.Invoices = mgr.GetUtilityInvoices();
+            return this.View("Index", view);
         }
     }
 }
